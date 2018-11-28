@@ -14,4 +14,8 @@ Route::set('contact-us', function(){
     ContactUs::CreateView('ContactUs');
 });
 
+Route::set('login', function(){
+    Login::CreateView('Login');
+});
+
 ?>

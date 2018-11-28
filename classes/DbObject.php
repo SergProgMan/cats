@@ -1,11 +1,6 @@
 <?php
 
-abstract class DbObject {
-
-    private $servername = "172.20.0.2";
-    private $username = "user";
-    private $password ="test";
-    private $dbname = "myDb";
+abstract class DbObject extends Database{
 
     protected static $tableName;
     protected $isNew = true;
@@ -16,6 +11,7 @@ abstract class DbObject {
     public function get($id){
         
     }
+    
     public static function getAll(){
         $conn = DbConnect::get();
         $table = static::$tableName;
