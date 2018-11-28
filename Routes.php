@@ -26,4 +26,8 @@ Route::set('addCat', function(){
     AddCat::CreateView('AddCat');
 });
 
+Route::set('editCat', function(){
+    EditCat::CreateView('EditCat');
+});
+
 ?>
