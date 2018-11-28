@@ -8,8 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
-<?php mainMenu($userLogin); ?>
-
     <h1 style="margin-top:50px;">Registration</h1>
     <?= $messageLog."<br>" ?>
     <form method = 'POST'>

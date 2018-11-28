@@ -18,4 +18,8 @@ Route::set('login', function(){
     Login::CreateView('Login');
 });
 
+Route::set('registration', function(){
+    Registration::CreateView('Registration');
+});
+
 ?>

@@ -1,10 +1,10 @@
 
 <ul>
-    <li><a class="active" href="main.php">Home</a></li>
-    <li><a href="login.php">Login</a></li>
-    <li><a href="registration.php">Registration</a></li>
-    <li><a href="editUser.php">My profile</a></li>
-    <li><a href="userCats.php">My cats</a></li>
-    <li><a href="addCat.php">Add new cat</a></li>
-    <li><a href="main.php?logout=true">LogOut</a></li>
+    <li><a class="active" href="main">Home</a></li>
+    <li><a href="login">Login</a></li>
+    <li><a href="registration">Registration</a></li>
+    <li><a href="editUser">My profile</a></li>
+    <li><a href="userCats">My cats</a></li>
+    <li><a href="addCat">Add new cat</a></li>
+    <li><a href="main?logout=true">LogOut</a></li>
 </ul>
