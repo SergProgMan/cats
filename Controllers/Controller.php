@@ -10,10 +10,9 @@ class Controller extends Database {
 
     public static function checkAuth(){
         if(User::getCurrentUser()){ 
-            return self::$userLogin = true;
-
+            return static::$userLogin = true;
         }
-        echo "not auth";
+        //echo "not auth";
     }
 
     public static function createMenu(){

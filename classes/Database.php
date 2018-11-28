@@ -43,9 +43,9 @@ class Database {
             }
             return $array;
         } else if (explode (' ', $query)[0] == 'INSERT'){
-            echo "INSERT";
+            //echo "INSERT";
         } else if (explode (' ', $query)[0] == 'UPDATE'){
-            echo "UPDATE";
+            //echo "UPDATE";
         }
 
     }

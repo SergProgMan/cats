@@ -54,7 +54,7 @@ class User extends Database {
             $token = $_COOKIE['user_token'];
             //var_dump($token);
             $user = static::findByColomnAndValue('token',$token);
-            var_dump($user);
+            //var_dump($user);
             if($user){
                 return $user;
             }
@@ -66,7 +66,7 @@ class User extends Database {
 
     public function setCookie(){
         $token = $this->generateRandomString();
-        setcookie('user_token',$token,time()+60*60*10);
+        setcookie('user_token',$token,time()+60*60*10);        
         return $token;
     }
 

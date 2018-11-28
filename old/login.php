@@ -7,6 +7,7 @@
 
     if(User::getCurrentUser()){ 
         $userLogin = true;
+
     }
 
     if(isset($_POST['name'])){
@@ -23,7 +24,8 @@
                 $user->token = $user->setCookie();
                 //var_dump($user->token);
                 $user->save();
-                header('Location: /main.php');
+                require_once('./index.php');
+                // header('Location: /main.php');
                 //exit();
             }    
         }
@@ -44,7 +46,6 @@
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
-    <?php mainMenu($userLogin); ?>
     <h1 style= "margin-top:50px;">Login</h1>
     <?= $messageLog ?>
     <form method="POST">

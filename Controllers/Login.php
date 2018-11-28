@@ -7,7 +7,7 @@ class Login extends Controller {
             $name = strtolower(trim($_POST['name']));
             $password = $_POST['password'];
             $user = User::findByColomnAndValue('name', $name);
-            var_dump($user);
+            //var_dump($user);
             if($user==null){
                 //$messageLog .= "wrong name or password!";
             } else {
@@ -17,13 +17,11 @@ class Login extends Controller {
                 if(!$res){
                     //$messageLog .= "Error! wrong name or password!";
                 } else {
-                    echo "GOOD!";
-                    $test = new User;
-                    var_dump($test);
+                    // echo "GOOD!";
                     $user->token = $user->setCookie();
                     $user->save();
-                    //header('Location: /main.php');
-                    //exit();
+                    header('Location: /index');
+                    exit();
                 }    
             }
         }
