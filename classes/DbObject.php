@@ -11,7 +11,7 @@ abstract class DbObject extends Database{
     public function get($id){
         
     }
-    
+
     public static function getAll(){
         $conn = DbConnect::get();
         $table = static::$tableName;
@@ -68,10 +68,10 @@ abstract class DbObject extends Database{
         $res = $conn->query($query);
     }
 
-    public static function findByColomnAndValue($checkColomn, $checkValue){
+    public static function findByColomnAndValue($colomn, $value){
         $conn = DbConnect::get();
         $table = static::$tableName;    
-        $query = "SELECT * FROM $table WHERE $checkColomn='$checkValue'";
+        $query = "SELECT * FROM $table WHERE $volomn='$value'";
         //var_dump($query);
         $result = $conn->query($query);
         //var_dump($result);

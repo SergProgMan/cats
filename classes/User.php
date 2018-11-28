@@ -26,13 +26,12 @@ class User extends Database {
             // }
             // return $res;
         } else {
-            $query = "UPDATE users SET name = '$this->name',
+            self::query("UPDATE users SET name = '$this->name',
                                     email = '$this->email',
                                     hash = '$this->hash',
                                     token = '$this->token'
-                    WHERE id = $this->id";
-            $res = $conn->query($query);
-            return $res;
+                    WHERE id = $this->id");
+            //return $res;
         }
     }
 
@@ -40,9 +39,9 @@ class User extends Database {
         $table =static:: $tableName;
         $resN = static::query("SELECT name FROM $table WHERE name='$this->name'");
         $resE = static::query("SELECT email FROM $table WHERE email='$this->email'");
-        var_dump($resN);
-        var_dump($resE);
-        if($resN->num_rows>0 || $resE->num_rows>0){
+        //var_dump($resN);
+        //var_dump($resE);
+        if($resN || $resE){
             return false;
         }
         return true;
@@ -55,7 +54,7 @@ class User extends Database {
             $token = $_COOKIE['user_token'];
             //var_dump($token);
             $user = static::findByColomnAndValue('token',$token);
-            //var_dump($user);
+            var_dump($user);
             if($user){
                 return $user;
             }

@@ -7,7 +7,7 @@ class Registration extends Controller{
 
 
     public function pageLogic(){
-        echo "work page logic";
+        //echo "work page logic";
         
         if(isset($_POST['name'])){
             $user = new User;
