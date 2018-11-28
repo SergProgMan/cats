@@ -7,6 +7,7 @@ class Index extends Controller {
             setcookie("user_token", "", time()-3600);
             header('Location: main.php');
         }
+        
         $user = User::getCurrentUser();
 
         $allCats = Cat::getAll();

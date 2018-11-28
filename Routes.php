@@ -22,4 +22,8 @@ Route::set('registration', function(){
     Registration::CreateView('Registration');
 });
 
+Route::set('addCat', function(){
+    AddCat::CreateView('AddCat');
+});
+
 ?>
