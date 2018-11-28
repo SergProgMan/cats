@@ -2,7 +2,7 @@
 
 require_once 'loader.php'; 
 
-class User extends DbObject {
+class User extends Database {
 
     public $id;
     public $name;
@@ -14,18 +14,17 @@ class User extends DbObject {
 
 
     public function save(){
-        $conn = DbConnect::get();
         if($this->isNew){
-            $query = "INSERT INTO users (name, email, hash)
+            self::query("INSERT INTO users (name, email, hash)
                     VALUES ('$this->name',
                             '$this->email',
-                            '$this->hash')";
-            $res = $conn->query($query);
-            if($res){
-                $this->id = $conn->insert_id;
-                $this->isNew = false;
-            }
-            return $res;
+                            '$this->hash')");
+            // $res = $conn->query($query);
+            // if($res){
+            //     $this->id = $conn->insert_id;
+            //     $this->isNew = false;
+            // }
+            // return $res;
         } else {
             $query = "UPDATE users SET name = '$this->name',
                                     email = '$this->email',
@@ -38,12 +37,11 @@ class User extends DbObject {
     }
 
     public function checkNameAndEmail(){
-        $conn = DbConnect::get();
         $table =static:: $tableName;
-        $queryName = "SELECT name FROM $table WHERE name='$this->name'";
-        $queryEmail = "SELECT email FROM $table WHERE email='$this->email'";
-        $resN = $conn->query($queryName);
-        $resE = $conn->query($queryEmail);
+        $resN = static::query("SELECT name FROM $table WHERE name='$this->name'");
+        $resE = static::query("SELECT email FROM $table WHERE email='$this->email'");
+        var_dump($resN);
+        var_dump($resE);
         if($resN->num_rows>0 || $resE->num_rows>0){
             return false;
         }

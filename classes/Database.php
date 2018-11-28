@@ -3,11 +3,13 @@
 class Database {
 
 
-    public static $host =  '172.21.0.2';
+    public static $host =  '172.21.0.3';
     public static $dbName = 'cats';
     public static $username = 'root';
     public static $password = 'test';
     public static $port = '6000';
+
+    protected $isNew = true;
 
 
     private static function connect(){
@@ -27,6 +29,8 @@ class Database {
         if (explode (' ', $query)[0] == 'SELECT'){
             $data = $statement->fetchAll();
             return $data;
+        } else if (explode (' ', $query)[0] == 'INSERT'){
+            //
         }
     }
 

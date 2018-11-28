@@ -4,6 +4,10 @@ class Controller extends Database {
 
     public static $userLogin = false;
 
+    public function pageLogic(){
+
+    }
+
     public static function checkAuth(){
         if(User::getCurrentUser()){ 
             return self::$userLogin = true;
@@ -23,6 +27,7 @@ class Controller extends Database {
 
     public static function CreateView($viewName){
         self::checkAuth();
+        static::pageLogic();
         self::createMenu();
         require_once("./Views/$viewName.php");
     }
