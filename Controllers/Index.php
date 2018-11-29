@@ -3,6 +3,7 @@
 class Index extends Controller {
 
     public function pageLogic(){
+        echo "Index";
         if(isset($_GET['logout'])){
             setcookie("user_token", "", time()-3600);
             header('Location: main.php');

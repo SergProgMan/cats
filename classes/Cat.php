@@ -14,10 +14,10 @@ class Cat extends Database{
         if($this->isNew){
             $res = self::query("INSERT INTO cats (name, age, description, image, userId)
                         VALUES ('$this->name',
-                                $this->age,
+                                '$this->age',
                                 '$this->description',
                                 '$this->image',
-                                $this->userId)");
+                                '$this->userId')");
             //var_dump($res);
             if($res){
                 rename('pictures/temp.jpeg',$this->image);
@@ -35,16 +35,14 @@ class Cat extends Database{
         }
     }
 
-    public function getLastId(){
-        $conn = DbConnect::get();
-        $queryLastId = "SELECT MAX(id) FROM cats";
-        $maxId = $conn->query($queryLastId);
-         //var_dump($maxId);
-        if($maxId == NULL){
+    public function getLastId(){        
+        $maxId = static::query("SELECT MAX(id) FROM cats");
+        //var_dump($maxId);
+        if($maxId['MAX(id)'] == NULL){
             $maxId = 1;
         } else {
-        $maxId = $maxId->fetch_assoc();
-        $maxId = $maxId['MAX(id)'];
+         $maxId = $maxId['MAX(id)'];
+         $maxId++;
        }
         //var_dump($maxId);
         return $maxId;

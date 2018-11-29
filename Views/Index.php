@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
-<?php mainMenu($userLogin); ?>
+    <h1>Index</h1>
     <div class="row" style="padding:20px; margin-top:30px;">
     <?php foreach($allCats as $cat): ?>
         <div class="column">

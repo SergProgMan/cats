@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
-    <?= $messageLog ?>
     <h1 style= "margin-top:50px;">Add cat image to upload</h1>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name ="picture">

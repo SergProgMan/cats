@@ -29,7 +29,7 @@ class AddCat extends Controller {
             $filePath = $uploadDirPath.'/'.$imageName;
                 
             if(move_uploaded_file($tempPath, $filePath)){
-               header('Location: /editCat.php?id=temp');
+               header('Location: /editCat?id=temp');
             }
             else{
                 $messageLog .= 'Error while copy';

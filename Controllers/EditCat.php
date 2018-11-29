@@ -2,38 +2,30 @@
 
 class EditCat extends Controller {
 
+    public static $entity;
+    public $isNew = true; // ex $existCat=false; 
+
     public function pageLogic(){
-        $existCat=false;
-        $userLogin=false;
 
-        if(!User::getCurrentUser()){
-            echo 'you need to login or registr';
-            exit();
-        } else {
-            $userLogin = true;
-            $user = User::getCurrentUser();
-        }
-
-
+        //var_dump($_GET);
         $catId = $_GET['id'];
-        if($_GET['id']=='temp'){
-            $image = 'pictures/temp.jpeg';
-            $cat = new Cat;
-            $cat->id = $cat->getLastId();
+        if($catId =='temp'){
+            static::$entity = new Cat;
+            static::$entity->image = 'pictures/temp.jpeg';
+            static::$entity->id = static::$entity->getLastId();
         } else {
-            $cat = Cat::getById($catId);
-            $image = $cat->image;
-            $existCat = true;
+            static::$entity = Cat::getById($catId);
         }
-
+        //var_dump(static::$entity->image);
         if(isset($_POST['save'])){ //save data from form
+            $cat = static::$entity;
             $cat->name = $_POST['name'];
             $cat->age = $_POST['age'];
             $cat->description = $_POST['description'];
-            $cat->userId = $user->id;
+            $cat->userId = static::$curUser->id;
             $cat->image = 'pictures/'.$cat->id.'.jpeg';
             $cat->save(); //add cat to array and save it
-            header('Location: /userCats.php');
+            header('Location: /userCats');
             exit();
         }
 

@@ -3,16 +3,18 @@
 class Controller extends Database {
 
     public static $userLogin = false;
+    public static $curUser;
 
     public function pageLogic(){
 
     }
 
     public static function checkAuth(){
-        if(User::getCurrentUser()){ 
+        if(User::getCurrentUser()){
+            static::$curUser = User::getCurrentUser();
             return static::$userLogin = true;
         }
-        //echo "not auth";
+        echo "not auth";
     }
 
     public static function createMenu(){

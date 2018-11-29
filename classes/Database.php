@@ -3,7 +3,7 @@
 class Database {
 
 
-    public static $host =  '172.21.0.3';
+    public static $host =  '172.20.0.2';
     public static $dbName = 'cats';
     public static $username = 'root';
     public static $password = 'test';
@@ -17,6 +17,19 @@ class Database {
         $dbName = self::$dbName;
         $username = self::$username;
         $password = self::$password;
+
+        // try {
+        //     $conn = new PDO("mysql:host= $host;dbname=$dbName", $username, $password);
+        //     // set the PDO error mode to exception
+        //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     echo "Connected successfully";
+        //     return $conn;
+        //     }
+        // catch(PDOException $e)
+        //     {
+        //     echo "Connection failed: " . $e->getMessage();
+        //     }
+
         $conn = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
             // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -26,7 +39,11 @@ class Database {
     public static function query($query,$params=array()){
         $statement =self::connect()->prepare($query);
         $statement -> execute ($params);
-        if (explode (' ', $query)[0] == 'SELECT'){
+        if (explode (' ', $query)[1] == 'MAX(id)'){
+            $data = $statement->fetch();
+            //echo "MAX";
+            return $data;
+        }else if (explode (' ', $query)[0] == 'SELECT'){
             $array=[];
             $className = get_called_class();
             $data = $statement->fetchObject($className);
@@ -44,9 +61,10 @@ class Database {
             return $array;
         } else if (explode (' ', $query)[0] == 'INSERT'){
             //echo "INSERT";
+            return true;
         } else if (explode (' ', $query)[0] == 'UPDATE'){
             //echo "UPDATE";
-        }
+        } 
 
     }
 
