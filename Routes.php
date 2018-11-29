@@ -2,9 +2,14 @@
 
 require_once('loader.php');
 
+// Route::set('index', function(){
+//     Index::CreateView('Index');
+// });
+
 Route::set('index.php', function(){
     Index::CreateView('Index');
 });
+
 
 Route::set('about-us', function(){
     AboutUs::CreateView('AboutUs');
@@ -28,6 +33,10 @@ Route::set('addCat', function(){
 
 Route::set('editCat', function(){
     EditCat::CreateView('EditCat');
+});
+
+Route::set('userCats', function(){
+    UserCats::CreateView('UserCats');
 });
 
 ?>

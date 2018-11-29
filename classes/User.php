@@ -53,7 +53,7 @@ class User extends Database {
         if(isset($_COOKIE['user_token'])){
             $token = $_COOKIE['user_token'];
             //var_dump($token);
-            $user = static::findByColomnAndValue('token',$token);
+            $user = static::get('token',$token);
             //var_dump($user);
             if($user){
                 return $user;

@@ -48,6 +48,7 @@ class Database {
             $className = get_called_class();
             $data = $statement->fetchObject($className);
             while ($data){
+                $data->isNew = false;
                 $array[] = $data;
                 //$data = $statement->fetch(PDO::FETCH_OBJ);
                 
@@ -55,7 +56,6 @@ class Database {
                 $data = $statement->fetchObject($className);
             }
             if(count($array)==1){
-                $array[0]->isNew = false;
                 return $array[0];
             }
             return $array;
@@ -68,7 +68,7 @@ class Database {
 
     }
 
-    public static function findByColomnAndValue($colomn, $value){
+    public static function get($colomn, $value){
         $table = static::$tableName;    
         $result = static::query("SELECT * FROM $table WHERE $colomn='$value'");
         //var_dump($result);
