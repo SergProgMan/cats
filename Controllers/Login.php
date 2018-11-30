@@ -6,7 +6,7 @@ class Login extends Controller {
         if(isset($_POST['name'])){
             $name = strtolower(trim($_POST['name']));
             $password = $_POST['password'];
-            $user = User::findByColomnAndValue('name', $name);
+            $user = User::get('name', $name);
             //var_dump($user);
             if($user==null){
                 //$messageLog .= "wrong name or password!";

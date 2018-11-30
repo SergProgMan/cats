@@ -8,9 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
-    <h1>Index</h1>
     <div class="row" style="padding:20px; margin-top:30px;">
-    <?php foreach($allCats as $cat): ?>
+    <?php foreach(static::$allCats as $cat): ?>
         <div class="column">
             <div class="card">
                 <a href="catPage.php?catId=<?= $cat->id ?>">
@@ -19,7 +18,7 @@
                     <h2><?= $cat->name ?></h2>
                     <p class="title"><?= $cat->age ?></p>
                     <p><?= $cat->description ?></p>
-                    <a href="<?php  $user = User::getById($cat->userId);
+                    <a href="<?php  $user = User::get('id',$cat->userId);
                                     echo "/userCats.php?userId=".$cat->userId.'">'.$user->name ?></a>
             </div>
         </div>

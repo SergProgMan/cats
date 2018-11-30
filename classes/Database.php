@@ -1,6 +1,6 @@
 <?php 
 
-class Database {
+abstract class Database {
 
 
     public static $host =  '172.20.0.2';
@@ -75,22 +75,24 @@ class Database {
         if ($result){
             return $result;
         }
-        return false;
-        
+        return false;        
     }
 
-    // public static function arrayToObject($array){
-    //     $entity = new static();
-    //     //$count = count($array);
-    //     //var_dump($count);
-    //     foreach ($array as $arr){
-    //         foreach ($arr as $key=>$value){
-    //             $entity->$key = $value;
-    //         }
-    //     }
-    //     $entity->isNew = false;
-    //     return $entity;
-    // }
+    public static function getAll(){
+        $table = static::$tableName;
+        $result = static::query("SELECT * FROM $table");
+        if($result){
+            return $result;
+        }
+        return false;
+    }
 
-
+    public static function delete($id){
+        $table = static::$tableName;
+        $result = static::query("DELETE FROM $table WHERE id=$id");
+        if ($result){
+            return $result;
+        }
+        return false;
+    }
 }

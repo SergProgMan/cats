@@ -14,22 +14,13 @@ class Controller extends Database {
             static::$curUser = User::getCurrentUser();
             return static::$userLogin = true;
         }
-        echo "not auth";
-    }
-
-    public static function createMenu(){
-        if(self::$userLogin){
-            require_once("./Views/MenuFull.php");
-        }else {
-            require_once("./Views/Menu.php");
-        }
-}
-    
+        //echo "not auth";
+    } 
 
     public static function CreateView($viewName){
         self::checkAuth();
         static::pageLogic();
-        self::createMenu();
+        require_once("./Views/Menu.php");
         require_once("./Views/$viewName.php");
     }
 }
