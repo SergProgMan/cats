@@ -9,16 +9,18 @@ class Login extends Controller {
             $user = User::get('name', $name);
             //var_dump($user);
             if($user==null){
-                //$messageLog .= "wrong name or password!";
+                static::$message .= "wrong name or password!";
             } else {
                 //echo "stage check pass";
                 $res = password_verify($password, $user->hash);
                 //var_dump($user->hash);
                 if(!$res){
-                    //$messageLog .= "Error! wrong name or password!";
+                    static::$message .= "Error! wrong name or password!";
                 } else {
                     // echo "GOOD!";
                     $user->token = $user->setCookie();
+                    // var_dump($user->token);
+                    // var_dump($_COOKIE);
                     $user->save();
                     header('Location: /index');
                     exit();

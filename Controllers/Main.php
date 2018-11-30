@@ -2,15 +2,28 @@
 
 class Main extends Controller {
 
+    public static $wetherData;
+
     public static $allCats = [];
     public static $oneCat = false;
-    
-
-
+ 
     public function pageLogic(){
+
+        //WEATHER--------------------
+        $data = file_get_contents('http://api.apixu.com/v1/current.json?key=cf90a96f908f43c6b43184113183011&q=Odesa');
+        $data = json_decode($data);
+        static::$wetherData = $data;
+        //WEATHER--------------------
+
+        //last 3 comments-----------
+        $lastComments = static::query("SELECT * FROM comments ORDER BY 'date' DESC LIMIT 3");
+        //var_dump ($lastComments);
+
+        //last 3 comments-----------
+
         if(isset($_GET['logout'])){
             setcookie("user_token", "", time()-3600);
-            header('Location: main');
+            //header('Location: main');
         }
 
         static::$allCats = Cat::getAll();

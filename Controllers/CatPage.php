@@ -3,6 +3,7 @@
 class CatPage extends Controller {
 
     public static $curCat;
+    public static $comments;
 
     public function pageLogic(){
 
@@ -15,18 +16,18 @@ class CatPage extends Controller {
             $com = new Comment;
             $com->content = $_POST["comment"];
             //$com->timeCreation = date('d/m/Y h:i:s a', time());
-            $com->userId = $user->id;
-            $com->userName = $user->name;
+            $com->userId = static::$curUser->id;
+            $com->userName = static::$curUser->name;
             $com->catId = $catId;
             $com->save($com);
         }
 
         if($_GET['deleteComment']){
             Comment::delete($_GET['deleteComment']);
-            header('Location: catPage?catId='.$cat->id);
+            header('Location: catPage?catId='.static::$curCat->id);
         }
 
-        $comments = Comment::get('catId',$catId);
+        static::$comments = Comment::get('catId',$catId);
     }
 }
 ?>

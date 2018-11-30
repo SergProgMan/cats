@@ -15,6 +15,7 @@ class User extends Database {
 
     public function save(){
         if($this->isNew){
+            //echo "is new and save";
             self::query("INSERT INTO users (name, email, hash)
                     VALUES ('$this->name',
                             '$this->email',
@@ -26,6 +27,7 @@ class User extends Database {
             // }
             // return $res;
         } else {
+            //echo "is old and update";
             self::query("UPDATE users SET name = '$this->name',
                                     email = '$this->email',
                                     hash = '$this->hash',

@@ -27,10 +27,12 @@ class UserCats extends Controller {
         
         if(gettype(static::$userCats)=='array'){  //if array
             static::$userCats = array_reverse(static::$userCats);
+            static::$message .='<h1>'.static::$catUser->name." cats</h1>";
         }else if(static::$userCats==NULL){   //if empty
-            echo "<h1>".static::$catUser->name." doesn't have any acts. Add new cats!</h1>";
-            exit();
+            static::$message .='<h1>'.static::$catUser->name." doesn't have any acts. Add new cats!</h1>";
         }else if(static::$userCats){         //if has one element
+            static::$message .='<h1>'.static::$catUser->name." cat</h1>";
+            //var_dump(static::$userCats);
             static::$oneCat = true;
         }
     }

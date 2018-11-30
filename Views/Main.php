@@ -1,51 +1,34 @@
 <div class="container" style="margin-top:75px; margin-left:50px;">
 <div class="row">
+  <div class="col-sm-3">
+    <div class="card">
+    <img class="card-img-top img-fluid" style="width:100px;height:100px;" src="<?= static::$wetherData->current->condition->icon?>">
+    <h6 class="card-title"><?= static::$wetherData->location->name ?></h6>
+    <h6 class="card-title"><?= static::$wetherData->location->localtime ?></h6>
+    <h6 class="card-title"><?= static::$wetherData->current->temp_c ?></h6>
+    <h6 class="card-title"><?= static::$wetherData->current->condition->text?></h6>
+    <h6 class="card-title"><?= static::$wetherData->current->wind_kph." k/h"?></h6>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+<!-- Minfin.com.ua currency informer 260x120 blue-->
+<div id="minfin-informer-m1Fn-currency">Загружаем <a href="https://minfin.com.ua/currency/" target="_blank">курсы валют</a> от minfin.com.ua</a></div><script>var iframe = '<ifra'+'me width="260" height="120" fram'+'eborder="0" src="https://informer.minfin.com.ua/gen/course/?color=blue" vspace="0" scrolling="no" hspace="0" allowtransparency="true"style="width:260px;height:120px;ove'+'rflow:hidden;"></iframe>';var cl = 'minfin-informer-m1Fn-currency';document.getElementById(cl).innerHTML = iframe; </script><noscript><img src="https://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курсы валют" title="Курс валют" border="0" /></noscript>
+<!-- Minfin.com.ua currency informer 260x120 blue-->
+</div>
+  </div>
+  </div>
+</div>
 
-<?php if(static::$oneCat):?>
+<div class="container" style="margin-top:75px; margin-left:50px;">
+<div class="row">
 
-        <div class="col-sm-3">
-            <div class="card">
-                <a href="catPage?catId=<?= static::$allCats->id ?>">
-                <img class="card-img-top img-fluid" src="<?= static::$allCats->image ?>" alt="Card image cap"></a>
-                <div class="card-block">
-                    <h4 class="card-title"><?= static::$allCats->name ?></h4>
-                    <h6 class="card-title"><?= static::$allCats->age ?></h6>
-                    <p class="card-text"><?= static::$allCats->description ?></p>
-                    <a href="<?php  $user = User::get('id',static::$allCats->userId);
-                                    echo "/userCats?userId=".static::$allCats->userId.'">'.$user->name ?></a>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                <div class="card-footer">
-                  <button type="button" class="btn btn-outline-success">Cool</button>
-                  <button type="button" class="btn btn-outline-danger">Not cool</button>
-                </div>
-            </div>
-        </div>
-<?php exit(); endif; ?>
-
-
-
-
-<?php foreach(static::$allCats as $cat): ?>
-
-        <div class="col-sm-3">
-            <div class="card">
-                <a href="catPage?catId=<?= $cat->id ?>">
-                <img class="card-img-top img-fluid" src="<?= $cat->image ?>" alt="Card image cap"></a>
-                <div class="card-block">
-                    <h4 class="card-title"><?= $cat->name ?></h4>
-                    <h6 class="card-title"><?= $cat->age ?></h6>
-                    <p class="card-text"><?= $cat->description ?></p>
-                    <a href="<?php  $user = User::get('id',$cat->userId);
-                                    echo "/userCats?userId=".$cat->userId.'">'.$user->name ?></a>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-                <div class="card-footer">
-                  <button type="button" class="btn btn-outline-success">Cool</button>
-                  <button type="button" class="btn btn-outline-danger">Not cool</button>
-                </div>
-            </div>
-        </div>
- <?php endforeach; ?>
+<?php if(static::$oneCat){
+    static::$allCats->createCard();
+    exit();
+}
+foreach(static::$allCats as $cat){
+        $cat->createCard();
+ } ?>
 </div>
 </div>

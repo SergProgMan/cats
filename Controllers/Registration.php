@@ -2,13 +2,7 @@
 
 class Registration extends Controller{
 
-// $userLogin = false;
-// $messageLog = '';
-
-
-    public function pageLogic(){
-        //echo "work page logic";
-        
+    public function pageLogic(){      
         if(isset($_POST['name'])){
             $user = new User;
             $user->name = strtolower(trim($_POST['name']));
@@ -17,10 +11,10 @@ class Registration extends Controller{
             $user->hash = password_hash($password, PASSWORD_DEFAULT);
             $res = $user->checkNameAndEmail();
             if(!$res){
-                $messageLog .= "Name or email exist!";
+                static::$message .= "Name or email exist!";
             } else {
                 $user->save();
-                //header('Location: login.php');
+                header('Location: login.php');
                 exit();
             }
         }

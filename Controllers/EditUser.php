@@ -4,13 +4,10 @@ class EditUser extends Controller {
 
     public function pageLogic(){
 
-        // if(!User::getCurrentUser()){
-        //     echo 'you need to login or registr';
-        //     exit();
-        // } else {
-        //     $userLogin = true;
-        //     $user = User::getCurrentUser();
-        // }
+        if(!static::$userLogin){
+            echo 'you need to login or registr';
+            exit();
+        }
 
         if(isset($_POST['email'])){
             $email = strtolower(trim($_POST['email']));
@@ -19,7 +16,7 @@ class EditUser extends Controller {
             if(!$check){
                 static::$curUser->email = $email;
             }else{
-                $message .= "This email is already taken. Change the email!";
+                static::$message .= "This email is already taken. Change the email!";
                 exit();
             }
             if($password){

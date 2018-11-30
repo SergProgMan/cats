@@ -7,6 +7,11 @@ class EditCat extends Controller {
 
     public function pageLogic(){
 
+        if(!static::$userLogin){
+            echo 'you need to login or registr';
+            exit();
+        }
+
         //var_dump($_GET);
         $catId = $_GET['id'];
         if($catId =='temp'){

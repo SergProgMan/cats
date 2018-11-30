@@ -4,25 +4,21 @@ class AddCat extends Controller {
 
     public function pageLogic(){
         $uploadDirPath = 'pictures';
-    
-        $messageLog = '';
-       
-        if(!User::getCurrentUser()){
-            $messageLog .= 'you need to login or registr';
+        
+        if(!static::$userLogin){
+            echo 'you need to login or registr';
             exit();
-        } else {
-            $userLogin = true;
         }
     
-        if(isset($_FILES['picture'])){
-            $picture = $_FILES['picture'];
+        if(isset($_FILES[$uploadDirPath])){
+            $picture = $_FILES[$uploadDirPath];
             if($picture['error'] !== UPLOAD_ERR_OK){
-                $messageLog .= 'Error!';
+                static::$message .= 'Error!';
                 die();
             }
             $tempPath = $picture['tmp_name'];
             if(!file_exists($uploadDirPath)){
-                mkdir('pictures');
+                mkdir($uploadDirPath);
             }
             
             $imageName = 'temp.jpeg';
@@ -32,7 +28,7 @@ class AddCat extends Controller {
                header('Location: /editCat?id=temp');
             }
             else{
-                $messageLog .= 'Error while copy';
+                static::$message .= 'Error while copy';
             }
         }
     }

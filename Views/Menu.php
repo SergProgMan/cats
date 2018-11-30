@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -31,8 +31,7 @@
         <a class="nav-item nav-link" href="editUser">My profile</a>
         <a class="nav-item nav-link" href="userCats">My cats</a>
         <a class="nav-item nav-link" href="addCat">Add new cat</a>
-        <a class="nav-item nav-link" href="top10">Top 10</a>
-        <a class="nav-item nav-link" href="index?logout=true">LogOut</a>';} ?>
+        <a class="nav-item nav-link" href="?logout=true">LogOut</a>';} ?>
     </div>
   </div>
 </nav>

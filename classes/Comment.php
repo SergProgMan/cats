@@ -18,7 +18,7 @@ class Comment extends Database {
                 VALUES ('$this->catId',
                         '$this->userId',
                         '$this->userName',
-                        '$this->content'");
+                        '$this->content');");
         //echo "SAVED MOTHER FUCKER";
         return $res;
 
