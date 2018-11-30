@@ -1,34 +1,62 @@
-<body>
-<h1  style="margin-top:50px; margin-left:50px;">
-    <?php if(static::$userCats==NULL){ 
-        echo static::$catUser->name." doesn't have any cats";
-        exit();
-    }
-    echo static::$catUser->name."  cats" ?></h1>
+<div class="container" style="margin-top:75px; margin-left:50px;">
+<?= static::$catUser->name."  cats" ?>
 
+<div class="row">
 
+<?php if(static::$oneCat):?>
 
-
-<div class="row" style="padding:20px; margin-top:30px;">
-    <?php foreach(static::$userCats as $cat): ?>
-    <div class="column">
-        <div class="card">
-        <?php echo '<img class ="image" src="'.$cat->image.'">'; 
-        //var_dump($cat);
-        ?>
-        <div class="container">
-            <h2><?= $cat->name ?></h2>
-            <p class="title"><?= $cat->age ?></p>
-            <p><?= $cat->description ?></p>
-            <?php 
-                if($canEdit){
-                    echo '<br><a href="editCat.php?id='.$cat->id.'">Edit</a>';
-                }
-                ?>
+        <div class="col-sm-3">
+            <div class="card">
+                <a href="catPage?catId=<?= static::$userCats->id ?>">
+                <img class="card-img-top img-fluid" src="<?= static::$allCats->image ?>" alt="Card image cap"></a>
+                <div class="card-block">
+                    <h4 class="card-title"><?= static::$userCats->name ?></h4>
+                    <h6 class="card-title"><?= static::$userCats->age ?></h6>
+                    <p class="card-text"><?= static::$userCats->description ?></p>
+                    <a href="<?php  $user = User::get('id',static::$userCats->userId);
+                                    echo "/userCats?userId=".static::$userCats->userId.'">'.$user->name ?></a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-outline-success">Cool</button>
+                  <button type="button" class="btn btn-outline-danger">Not cool</button>
+                </div>
+                <?php if(static::$canEdit){
+                    echo '<br><a href="editCat?id='.$cat->id.'">Edit</a>';
+                } ?>
+            </div>
         </div>
+<?php exit(); endif; ?>
+
+
+
+
+<?php foreach(static::$userCats as $cat): ?>
+
+        <div class="col-sm-3">
+            <div class="card">
+                <a href="catPage?catId=<?= $cat->id ?>">
+                <img class="card-img-top img-fluid" src="<?= $cat->image ?>" alt="Card image cap"></a>
+                <div class="card-block">
+                    <h4 class="card-title"><?= $cat->name ?></h4>
+                    <h6 class="card-title"><?= $cat->age ?></h6>
+                    <p class="card-text"><?= $cat->description ?></p>
+                    <a href="<?php  $user = User::get('id',$cat->userId);
+                                    echo "/userCats?userId=".$cat->userId.'">'.$user->name ?></a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-outline-success">Cool</button>
+                  <button type="button" class="btn btn-outline-danger">Not cool</button>
+                </div>
+                <?php if(static::$canEdit){
+                    echo '<br><a href="editCat?id='.$cat->id.'">Edit</a>';
+                } ?>
+            </div>
         </div>
-    </div>
-    <?php endforeach; ?>
-    </div>
-</body>
-</html>
+ <?php endforeach; ?>
+</div>
+</div>
+
+
+

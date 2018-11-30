@@ -4,6 +4,7 @@ class Main extends Controller {
 
     public static $allCats = [];
     public static $oneCat = false;
+    
 
 
     public function pageLogic(){

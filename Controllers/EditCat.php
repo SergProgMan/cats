@@ -14,7 +14,7 @@ class EditCat extends Controller {
             static::$entity->image = 'pictures/temp.jpeg';
             static::$entity->id = static::$entity->getLastId();
         } else {
-            static::$entity = Cat::getById($catId);
+            static::$entity = Cat::get('id',$catId);
         }
         //var_dump(static::$entity->image);
         if(isset($_POST['save'])){ //save data from form
@@ -30,9 +30,11 @@ class EditCat extends Controller {
         }
 
         if (isset($_POST['delete'])){
-            unlink($this->image);
-            $cat::delete($cat->id);
-            header('Location: /userCats.php');
+            //var_dump(static::$entity->image);
+            //var_dump($catId);
+            unlink(static::$entity->image);
+            static::$entity::delete($catId);
+            header('Location: /userCats');
         }
     }
 }

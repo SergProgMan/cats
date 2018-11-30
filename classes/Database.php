@@ -4,7 +4,7 @@ abstract class Database {
 
 
     public static $host =  '172.20.0.2';
-    public static $dbName = 'cats';
+    public static $dbName = 'myDb';
     public static $username = 'root';
     public static $password = 'test';
     public static $port = '6000';
@@ -66,7 +66,10 @@ abstract class Database {
             return true;
         } else if (explode (' ', $query)[0] == 'UPDATE'){
             //echo "UPDATE";
-        } 
+        } else if (explode (' ', $query)[0] == 'DELETE'){
+            //var_dump($statement);
+            return true;
+        }
 
     }
 

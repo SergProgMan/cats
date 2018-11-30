@@ -5,6 +5,7 @@ class UserCats extends Controller {
     public static $canEdit = false;
     public static $catUser;
     public static $userCats = [];
+    public static $oneCat = false;
 
     public function pageLogic(){
         //var_dump(static::$curUser);
@@ -23,6 +24,15 @@ class UserCats extends Controller {
         
         static::$userCats = Cat::get('userId',$catUserId);
         //var_dump($userCats);
+        
+        if(gettype(static::$userCats)=='array'){  //if array
+            static::$userCats = array_reverse(static::$userCats);
+        }else if(static::$userCats==NULL){   //if empty
+            echo "<h1>".static::$catUser->name." doesn't have any acts. Add new cats!</h1>";
+            exit();
+        }else if(static::$userCats){         //if has one element
+            static::$oneCat = true;
+        }
     }
 }
 

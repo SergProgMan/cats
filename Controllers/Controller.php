@@ -19,8 +19,8 @@ class Controller extends Database {
 
     public static function CreateView($viewName){
         self::checkAuth();
+        //require_once("./Views/Menu.php");
         static::pageLogic();
-        require_once("./Views/Menu.php");
         require_once("./Views/$viewName.php");
     }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top:75px; margin-left:50px;">
 <div class="row">
 
 <?php if(static::$oneCat):?>
