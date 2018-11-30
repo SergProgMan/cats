@@ -1,29 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
-</head>
-<body>
-    <div class="row" style="padding:20px; margin-top:30px;">
-    <?php foreach(static::$allCats as $cat): ?>
-        <div class="column">
+<div class="container">
+<div class="row">
+
+<?php if(static::$oneCat):?>
+
+        <div class="col-sm-3">
             <div class="card">
-                <a href="catPage.php?catId=<?= $cat->id ?>">
-                <?= '<img class="picture" src="'.$cat->image.'">' ?> </a>
-                <div class="container">
-                    <h2><?= $cat->name ?></h2>
-                    <p class="title"><?= $cat->age ?></p>
-                    <p><?= $cat->description ?></p>
-                    <a href="<?php  $user = User::get('id',$cat->userId);
-                                    echo "/userCats.php?userId=".$cat->userId.'">'.$user->name ?></a>
+                <a href="catPage?catId=<?= static::$allCats->id ?>">
+                <img class="card-img-top img-fluid" src="<?= static::$allCats->image ?>" alt="Card image cap"></a>
+                <div class="card-block">
+                    <h4 class="card-title"><?= static::$allCats->name ?></h4>
+                    <h6 class="card-title"><?= static::$allCats->age ?></h6>
+                    <p class="card-text"><?= static::$allCats->description ?></p>
+                    <a href="<?php  $user = User::get('id',static::$allCats->userId);
+                                    echo "/userCats?userId=".static::$allCats->userId.'">'.$user->name ?></a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-outline-success">Cool</button>
+                  <button type="button" class="btn btn-outline-danger">Not cool</button>
+                </div>
             </div>
         </div>
-    </div>
-    <?php endforeach; ?>
-    </div>
-</body>
-</html>
+<?php exit(); endif; ?>
+
+
+
+
+<?php foreach(static::$allCats as $cat): ?>
+
+        <div class="col-sm-3">
+            <div class="card">
+                <a href="catPage?catId=<?= $cat->id ?>">
+                <img class="card-img-top img-fluid" src="<?= $cat->image ?>" alt="Card image cap"></a>
+                <div class="card-block">
+                    <h4 class="card-title"><?= $cat->name ?></h4>
+                    <h6 class="card-title"><?= $cat->age ?></h6>
+                    <p class="card-text"><?= $cat->description ?></p>
+                    <a href="<?php  $user = User::get('id',$cat->userId);
+                                    echo "/userCats?userId=".$cat->userId.'">'.$user->name ?></a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-outline-success">Cool</button>
+                  <button type="button" class="btn btn-outline-danger">Not cool</button>
+                </div>
+            </div>
+        </div>
+ <?php endforeach; ?>
+</div>
+</div>

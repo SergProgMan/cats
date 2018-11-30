@@ -46,4 +46,8 @@ Route::set('editUser', function(){
     EditUser::CreateView('EditUser');
 });
 
+Route::set('top10', function(){
+    Top10::CreateView('Top10');
+});
+
 ?>

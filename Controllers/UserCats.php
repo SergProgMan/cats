@@ -4,7 +4,7 @@ class UserCats extends Controller {
 
     public static $canEdit = false;
     public static $catUser;
-    public static $userCats;
+    public static $userCats = [];
 
     public function pageLogic(){
         //var_dump(static::$curUser);

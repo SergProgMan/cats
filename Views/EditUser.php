@@ -8,10 +8,10 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
-<h1 style= "margin-top:50px;">Change name and password <?= static::$curUser->name ?></h1>
+<h1 style= "margin-top:50px;">Change email and password <?= static::$curUser->name ?></h1>
 <!-- <?= $message ?> -->
     <form method="POST">
-       <p>New name      </p> <input type="text" name="name" placeholder="<?= static::$curUser->name ?>"> 
+       <p>New email      </p> <input type="text" name="email" placeholder="<?= static::$curUser->email ?>"> 
        <p>New password  </p> <input type="text" name="password"  placeholder="Password">
         <input type="submit" value="Change">
     </form>

@@ -56,8 +56,10 @@ abstract class Database {
                 $data = $statement->fetchObject($className);
             }
             if(count($array)==1){
+                //echo "1 element";
                 return $array[0];
             }
+            //echo "many elements";
             return $array;
         } else if (explode (' ', $query)[0] == 'INSERT'){
             //echo "INSERT";
@@ -81,6 +83,7 @@ abstract class Database {
     public static function getAll(){
         $table = static::$tableName;
         $result = static::query("SELECT * FROM $table");
+        //var_dump($result);
         if($result){
             return $result;
         }
