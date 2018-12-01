@@ -10,14 +10,6 @@ Route::set('index', function(){
     Main::CreateView('Main');
 });
 
-Route::set('about-us', function(){
-    AboutUs::CreateView('AboutUs');
-});
-
-Route::set('contact-us', function(){
-    ContactUs::CreateView('ContactUs');
-});
-
 Route::set('login', function(){
     Login::CreateView('Login');
 });
