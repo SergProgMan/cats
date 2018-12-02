@@ -2,21 +2,17 @@
 
 abstract class Database {
 
-
-    public static $host =  '172.20.0.2';
-    public static $dbName = 'myDb';
-    public static $username = 'root';
-    public static $password = 'test';
-    public static $port = '6000';
-
     protected $isNew = true;
 
 
     private static function connect(){
-        $host = self::$host;
-        $dbName = self::$dbName;
-        $username = self::$username;
-        $password = self::$password;
+
+        $ini = parse_ini_file('./config1.ini');
+
+        $host = $ini['host'];
+        $dbName = $ini['dbName'];
+        $username = $ini['username'];
+        $password = $ini['password'];
 
         // try {
         //     $conn = new PDO("mysql:host= $host;dbname=$dbName", $username, $password);
@@ -37,6 +33,7 @@ abstract class Database {
     }
 
     public static function query($query,$params=array()){
+        var_dump($query);
         $statement =self::connect()->prepare($query);
         $statement -> execute ($params);
         //var_dump($statement);
@@ -67,6 +64,7 @@ abstract class Database {
             return true;
         } else if (explode (' ', $query)[0] == 'UPDATE'){
             //echo "UPDATE";
+            return true;
         } else if (explode (' ', $query)[0] == 'DELETE'){
             //var_dump($statement);
             return true;

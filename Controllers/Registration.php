@@ -14,7 +14,7 @@ class Registration extends Controller{
                 static::$message .= "Name or email exist!";
             } else {
                 $user->save();
-                header('Location: login.php');
+                header('Location: login');
                 exit();
             }
         }

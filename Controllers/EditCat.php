@@ -38,7 +38,7 @@ class EditCat extends Controller {
             //var_dump(static::$entity->image);
             //var_dump($catId);
             unlink(static::$entity->image);
-            static::$entity::delete($catId);
+            Cat::delete(static::$entity->id);
             header('Location: /userCats');
         }
     }

@@ -6,11 +6,15 @@
 
 <?php 
     if(static::$oneCat){
-        static::$userCats->createCard();
-        exit();
-    } foreach(static::$userCats as $cat){
+        $cat = static::$userCats;
         $cat->createCard();
-    }
+        exit();
+    } else if (gettype(static::$userCats)=="array"){
+        foreach(static::$userCats as $cat){
+            $cat->createCard();
+        }
+    }     
+    
  ?>
 </div>
 </div>
