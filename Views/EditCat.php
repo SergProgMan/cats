@@ -9,7 +9,7 @@
         <br>Cat's description<br>
         <textarea name="description" cols="40" rows="3"><?php echo static::$entity->description;?></textarea><br>
         <input type="submit" name="save" value="save"> <br><br><br>
-        <?php if(!static::$isNew){
+        <?php if(!static::$entity->isNew){
             echo '<input type="submit" name="delete" value="delete">';
         }?>
     </form>

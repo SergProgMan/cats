@@ -41,9 +41,9 @@ class User extends Database {
         $table =static:: $tableName;
         $resN = static::query("SELECT name FROM $table WHERE name='$this->name'");
         $resE = static::query("SELECT email FROM $table WHERE email='$this->email'");
-        //var_dump($resN);
-        //var_dump($resE);
-        if($resN || $resE){
+        // var_dump($resN);
+        // var_dump($resE);
+        if(gettype($resN) == 'object' || gettype($resE) == 'object'){
             return false;
         }
         return true;

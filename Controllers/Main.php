@@ -5,7 +5,6 @@ class Main extends Controller {
     public static $wetherData;
 
     public static $allCats = [];
-    public static $oneCat = false;
 
     public static $lastThreeCom = [];
  
@@ -30,14 +29,10 @@ class Main extends Controller {
         static::$allCats = Cat::getAll();
         //var_dump(static::$allCats);
 
-        if(gettype(static::$allCats)=='array'){  //if array
-            //echo "1";
+        if(gettype(static::$allCats)=='array' && count(static::$allCats)>1){  //if array
             static::$allCats = array_reverse(static::$allCats);
         }else if(static::$allCats==NULL){   //if empty
-            echo "<h1>Database is empty! Add new cats!</h1>";
-            exit();
-        }else if(static::$allCats){         //if has one element
-            static::$oneCat = true;
+            static::$message .= "<h1>Database is empty! Add new cats!</h1>";
         }
 
     }

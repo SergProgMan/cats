@@ -3,7 +3,7 @@
 class EditCat extends Controller {
 
     public static $entity;
-    public $isNew = true; // ex $existCat=false; 
+    //public static $isNew = true; // ex $existCat=false; 
 
     public function pageLogic(){
 

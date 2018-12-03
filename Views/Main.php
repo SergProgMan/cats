@@ -18,11 +18,11 @@
 </div>
   </div>
   <div class="col-5">
-  <p>Last three comments</p>
+  <p>Last three comments:</p>
   <div>
     <?php 
     if(gettype(static::$lastThreeCom)=='object'){ //if one    
-      echo '<b>'.static::$lastThreeCom->userName.'</b>';
+      echo '<b>'.static::$lastThreeCom->userName.'    </b>';
       echo static::$lastThreeCom->content."<br>";
     } else if(gettype(static::$lastThreeCom)=='array'){
       foreach(static::$lastThreeCom as $com){
@@ -34,19 +34,21 @@
 </div>
 </div>
 
-
   </div>
 </div>
 <?= static::$message ?>
 <div class="container" style="margin-top:75px; margin-left:50px;">
 <div class="row">
 
-<?php if(static::$oneCat){
+<?php
+//var_dump(static::$allCats);
+if(gettype(static::$allCats) == 'object'){
     static::$allCats->createCard();
-    exit();
+}else if(gettype(static::$allCats)=='array' && count(static::$allCats)>1){
+  foreach(static::$allCats as $cat){
+    $cat->createCard();
 }
-foreach(static::$allCats as $cat){
-        $cat->createCard();
- } ?>
+}
+ ?>
 </div>
 </div>

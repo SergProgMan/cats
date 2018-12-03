@@ -2,12 +2,12 @@
 
 abstract class Database {
 
-    protected $isNew = true;
+    public $isNew = true;
 
 
     private static function connect(){
 
-        $ini = parse_ini_file('./config1.ini');
+        $ini = parse_ini_file('./config.ini');
 
         $host = $ini['host'];
         $dbName = $ini['dbName'];
