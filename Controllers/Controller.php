@@ -66,7 +66,7 @@ class Controller extends Database {
         }
         $userId = static::$curUser->id;
         $like = Like::query("SELECT * FROM likes WHERE userId=$userId AND catId=$catId");
-        var_dump($like);
+        //var_dump($like);
         if($like){   //if find, check if likeValue==like
             $like->isNew = false;
             if($like->likeValue == 'like'){ //if find -> canDislike
@@ -90,7 +90,7 @@ class Controller extends Database {
             'dislikes' => 0
         ];
 
-        $res = self::query("SELECT * FROM likes WHERE catId=$catId");
+        $res = Like::query("SELECT * FROM likes WHERE catId=$catId");
         //var_dump($res);
         if(gettype($res) != 'array'){ // if get 1 object
             if($res->likeValue == 'like'){
@@ -98,9 +98,9 @@ class Controller extends Database {
             } else {
                 $allLikes['dislikes'] ++;
             }
-        } else {             //if get array
+        } else if (count($res)>1) {             //if get array
             foreach($res as $like){
-                if($res->likeValue == 'like'){
+                if($like->likeValue == 'like'){
                     $allLikes['likes'] ++;
                 } else {
                     $allLikes['dislikes'] ++;
@@ -112,7 +112,7 @@ class Controller extends Database {
 
 
     public static function CreateView($viewName){
-       var_dump($_POST);
+       //var_dump($_POST);
         self::checkAuth();
         static::checkLikes();
         static::pageLogic();

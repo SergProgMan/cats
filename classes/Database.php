@@ -33,7 +33,7 @@ abstract class Database {
     }
 
     public static function query($query,$params=array()){
-        var_dump($query);
+        //var_dump($query);
         $statement =self::connect()->prepare($query);
         $statement -> execute ($params);
         //var_dump($statement);
