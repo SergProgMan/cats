@@ -7,24 +7,12 @@ abstract class Database {
 
     private static function connect(){
 
-        $ini = parse_ini_file('./config.ini');
+        $ini = parse_ini_file('./config1.ini');
 
         $host = $ini['host'];
         $dbName = $ini['dbName'];
         $username = $ini['username'];
         $password = $ini['password'];
-
-        // try {
-        //     $conn = new PDO("mysql:host= $host;dbname=$dbName", $username, $password);
-        //     // set the PDO error mode to exception
-        //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //     echo "Connected successfully";
-        //     return $conn;
-        //     }
-        // catch(PDOException $e)
-        //     {
-        //     echo "Connection failed: " . $e->getMessage();
-        //     }
 
         $conn = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
             // set the PDO error mode to exception
@@ -33,24 +21,22 @@ abstract class Database {
     }
 
     public static function query($query,$params=array()){
-        //var_dump($query);
+        var_dump($query);
         $statement =self::connect()->prepare($query);
         $statement -> execute ($params);
-        //var_dump($statement);
+        var_dump($statement);
         if (explode (' ', $query)[1] == 'MAX(id)'){
             $data = $statement->fetch();
             //echo "MAX";
             return $data;
         }else if (explode (' ', $query)[0] == 'SELECT'){
+            echo "SELECT!!!";
             $array=[];
             $className = get_called_class();
             $data = $statement->fetchObject($className);
             while ($data){
                 $data->isNew = false;
                 $array[] = $data;
-                //$data = $statement->fetch(PDO::FETCH_OBJ);
-                
-                //echo "Class name: $className";
                 $data = $statement->fetchObject($className);
             }
             if(count($array)==1){

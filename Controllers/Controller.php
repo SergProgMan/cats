@@ -30,7 +30,7 @@ class Controller extends Database {
                 $catId = $_POST['like'];
                 $like=static::checkUserCanLikeOrDislike($catId);
                 if($like->canLike){                    
-                    $like->likeValue = 'like';
+                    $like->likeValue = 1;
                     if($like->isNew){
                         $like->userId = static::$curUser->id;
                         $like->catId = $catId;
@@ -43,7 +43,7 @@ class Controller extends Database {
                 $catId = $_POST['dislike'];
                 $like =static::checkUserCanLikeOrDislike($catId);
                 if($like->canDislike){                    
-                    $like->likeValue = 'dislike';
+                    $like->likeValue = -1;
                     if($like->isNew){
                         $like->userId = static::$curUser->id;
                         $like->catId = $catId;
@@ -69,7 +69,7 @@ class Controller extends Database {
         //var_dump($like);
         if($like){   //if find, check if likeValue==like
             $like->isNew = false;
-            if($like->likeValue == 'like'){ //if find -> canDislike
+            if($like->likeValue == 1){ //if find -> canDislike
                 $like->canDislike = true;
                 return $like;
             } else { // else canLike
@@ -93,14 +93,14 @@ class Controller extends Database {
         $res = Like::query("SELECT * FROM likes WHERE catId=$catId");
         //var_dump($res);
         if(gettype($res) != 'array'){ // if get 1 object
-            if($res->likeValue == 'like'){
+            if($res->likeValue == 1){
                 $allLikes['likes'] ++;
             } else {
                 $allLikes['dislikes'] ++;
             }
         } else if (count($res)>1) {             //if get array
             foreach($res as $like){
-                if($like->likeValue == 'like'){
+                if($like->likeValue == '1'){
                     $allLikes['likes'] ++;
                 } else {
                     $allLikes['dislikes'] ++;
@@ -119,11 +119,6 @@ class Controller extends Database {
         require_once("./Views/Menu.php");
         require_once("./Views/$viewName.php");
     }
-
-
-    
-
-
 }
 
 ?>

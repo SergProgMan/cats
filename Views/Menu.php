@@ -25,7 +25,7 @@
       <a class="nav-item nav-link" href="index">Home</a>
       <a class="nav-item nav-link" href="login">Login</a>
       <a class="nav-item nav-link" href="registration">Registration</a>
-      <!-- <a class="nav-item nav-link" href="top10">Top 10</a> -->
+      <a class="nav-item nav-link" href="top10">Top 10</a>
       <?php if(static::$userLogin){
         echo '
         <a class="nav-item nav-link" href="editUser">My profile</a>
