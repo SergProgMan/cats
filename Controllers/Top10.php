@@ -15,6 +15,3 @@ class Top10 extends Controller {
     }
    
 }
-
-
-
