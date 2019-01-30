@@ -1,5 +1,5 @@
 # cats
-My first web project
+
 http://s-cat.jakeroid.com
 
 - [x] Регистрация, Авторизация, Вход.
