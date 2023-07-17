@@ -1,22 +1,22 @@
-# cats
+# Cats
 
-- [x] Регистрация, Авторизация, Вход.
-- [x] Главная страница - коты всех авторов. Каждый кот это изображение, имя, имя автора (и ссылка на его котов), дата публикации.
-- [x] Страница одного автора. Аналогично главной, но коты только одного автора.
-- [X] Страница для редактирования своих данных (email, пароль).
-- [x] Страница для редактирования своих котов, а именно редактирование и удаление.
-## Расширенная версия
-- [x] Возможность комментирования котов другими авторизованными пользователями.
-- [x] Возможность голосования за кота (+1 / -1) и учет его рейтинга.
-- [x] Защита от накрутки и учет голосов в базе. Запрет повторного голосования. То есть необходимо сохранять данные о голосовании конкретного пользователя за кота.
-- [ ] Страница с ТОП10 котов. Сортировка по рейтингу от пользователей.
-- [x] Добавить на главную страницу данные о погоде в Одессе используя любой API погоды.
-- [x] Добавить на главную данные о курсах валют используя любой сервис из интернета.
-- [x] Добавить виджет "Последние комментарии" на главную.
-## Технические требования
-- [x] Для хранения данных использовать MySQL.
-- [x] Для хранения файлов использовать файловую систему.
-- [x] Использование ООП, а именно наследования, интерфейсов, абстрактных классов и т.д.
-- [x] Одна точка входа (EndPoint) и роутинг.
-- [x] Использование MVC.
-- [x] Выложить свой проект в свой github аккаунт.
+- [x] Registration, Authorization, Login.
+- [x] Homepage - cats from all authors. Each cat has an image, name, author's name (and a link to their cats), and publication date.
+- [x] Author's page. Similar to the homepage, but only cats from one author.
+- [X] Page for editing personal data (email, password).
+- [x] Page for editing own cats, including editing and deletion.
+## Advanced Version
+- [x] Ability for authorized users to comment on cats.
+- [x] Ability to vote for a cat (+1 / -1) and track its rating.
+- [x] Protection against manipulation and storing votes in the database. Prevent duplicate voting. It is necessary to save the specific user's voting data for a cat.
+- [ ] Top 10 cats page. Sorting based on user ratings.
+- [x] Add weather data for Odessa to the homepage using any weather API.
+- [x] Add currency exchange rates data to the homepage using any internet service.
+- [x] Add a "Latest Comments" widget to the homepage.
+## Technical Requirements
+- [x] Use MySQL for data storage.
+- [x] Use the file system for storing files.
+- [x] Use object-oriented programming, including inheritance, interfaces, abstract classes, etc.
+- [x] Single entry point (EndPoint) and routing.
+- [x] Use MVC (Model-View-Controller) pattern.
+- [x] Publish the project on your GitHub account.
